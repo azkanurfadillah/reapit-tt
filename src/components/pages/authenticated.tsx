@@ -5,7 +5,7 @@ import { useReapitConnect } from '@reapit/connect-session'
 import { reapitConnectBrowserSession } from '../../core/connect-session'
 import { configurationAppointmentsApiService } from '../../platform-api/configuration-api'
 import { getPropertiesSellingMode } from '../../platform-api/foundations-api'
-import { ListItemModel, MetadataModelPagedResult } from '@reapit/foundations-ts-definitions'
+import { ListItemModel, PropertyModel,MetadataModelPagedResult } from '@reapit/foundations-ts-definitions'
 
 export type AuthenticatedProps = {}
 // interface IProperties {
@@ -15,14 +15,15 @@ export type AuthenticatedProps = {}
 export const Authenticated: FC<AuthenticatedProps> = () => {
   const { connectSession } = useReapitConnect(reapitConnectBrowserSession)
   const [appointmentConfigTypes, setAppointmentConfigTypes] = useState<ListItemModel[]>([])
-  // const [propertiesData, setPropertiesData] = useState<MetadataModelPagedResult[]>([])
-  const [propertiesData, setPropertiesData] = useState<ListItemModel[]>([])
+  const [propertiesData, setPropertiesData] = useState<MetadataModelPagedResult>()
+  // const [propertiesData, setPropertiesData] = useState<ListItemModel[]>([])
 
   useEffect(() => {
     const fetchAppoinmentConfigs = async () => {
       if (!connectSession) return
       const serviceResponse = await configurationAppointmentsApiService(connectSession)
       if (serviceResponse) {
+        console.log(typeof serviceResponse, {serviceResponse});
         setAppointmentConfigTypes(serviceResponse)
       }
     }
@@ -34,10 +35,10 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
  useEffect(() => {
     const fetchPropertiesData = async () => {
       if (!connectSession) return
-      const serviceResponse = await getPropertiesSellingMode(connectSession)
-      if (serviceResponse) {
-        console.log({serviceResponse})
-        setPropertiesData(serviceResponse)
+      const propertiesResponse = await getPropertiesSellingMode(connectSession)
+      if (propertiesResponse) {
+        console.log({propertiesResponse})
+        setPropertiesData(propertiesData)
       }
     }
     if (connectSession) {
@@ -45,8 +46,8 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
     }
   }, [connectSession])
 
-  // console.log('Appointment Config Types are: ', appointmentConfigTypes)
-  // console.log('properties data ', propertiesData?.pageCount)
+  console.log('Appointment Config Types are: ',typeof appointmentConfigTypes, appointmentConfigTypes[0])
+  console.log('properties data ',{propertiesData}, typeof propertiesData, propertiesData?.pageCount)
   return (
     <>
       <Title>Properties for Sale</Title>

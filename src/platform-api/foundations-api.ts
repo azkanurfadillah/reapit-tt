@@ -1,10 +1,10 @@
 import { ReapitConnectSession } from '@reapit/connect-session'
-import { ListItemModel } from '@reapit/foundations-ts-definitions'
+import { ListItemModel,MetadataModelPagedResult } from '@reapit/foundations-ts-definitions'
 import { URLS, BASE_HEADERS } from '../constants/api'
 
 export const getPropertiesSellingMode = async (
     session: ReapitConnectSession,
-  ): Promise<ListItemModel[] | undefined> => {
+  ): Promise<MetadataModelPagedResult | undefined> => {
     try {
       const response = await fetch(`${window.reapit.config.platformApiUrl}${URLS.PROPERTIES}/?marketingMode=selling`, {
         method: 'GET',
@@ -16,7 +16,7 @@ export const getPropertiesSellingMode = async (
       })
   
       if (response) {
-        const responseJson: Promise<ListItemModel[] | undefined> = response.json()
+        const responseJson: Promise<MetadataModelPagedResult | undefined> = response.json()
         return responseJson
       }
   
