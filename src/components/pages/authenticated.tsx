@@ -5,17 +5,17 @@ import { useReapitConnect } from '@reapit/connect-session'
 import { reapitConnectBrowserSession } from '../../core/connect-session'
 import { configurationAppointmentsApiService } from '../../platform-api/configuration-api'
 import { getPropertiesSellingMode } from '../../platform-api/foundations-api'
-import { ListItemModel, PropertyModel, MetadataModelPagedResult } from '@reapit/foundations-ts-definitions'
+import { ListItemModel, PropertyModel, MetadataModelPagedResult,PropertyModelPagedResult } from '@reapit/foundations-ts-definitions'
 
 export type AuthenticatedProps = {}
-// interface IProperties {
-//   pageCount: number;
-// }
+interface IProperties {
+  pageCount: number;
+}
 
 export const Authenticated: FC<AuthenticatedProps> = () => {
   const { connectSession } = useReapitConnect(reapitConnectBrowserSession)
   const [appointmentConfigTypes, setAppointmentConfigTypes] = useState<ListItemModel[]>([])
-  const [propertiesData, setPropertiesData] = useState<MetadataModelPagedResult>()
+  const [propertiesData, setPropertiesData] = useState<PropertyModelPagedResult>()
   // const [propertiesData, setPropertiesData] = useState<ListItemModel[]>([])
 
   useEffect(() => {
@@ -68,9 +68,13 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
               <TableRow>
               <TableCell>{data?.id}</TableCell>
               <TableCell>
-                {/* <BodyText>{data?.address?.buildingName}</BodyText> */}
+                <BodyText>Building Name: {data?.address?.buildingName}</BodyText>
+                <BodyText>Building Number: {data?.address?.buildingNumber}</BodyText>
+                <BodyText>Line: {data?.address?.line1}</BodyText>
+                <BodyText>Post Code: {data?.address?.postcode}</BodyText>
+                <BodyText>Country Id: {data?.address?.countryId}</BodyText>
                 </TableCell>
-              <TableCell>Third Column</TableCell>
+              <TableCell>{data?.selling?.price}</TableCell>
             </TableRow>
             )
             
