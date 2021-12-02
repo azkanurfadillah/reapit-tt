@@ -76,12 +76,6 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
             
           })
         }
-       
-        <TableRow>
-          <TableCell>First Column</TableCell>
-          <TableCell>Second Column</TableCell>
-          <TableCell>Third Column</TableCell>
-        </TableRow>
       </Table>
 
     </>
