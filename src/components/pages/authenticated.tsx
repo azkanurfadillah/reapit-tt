@@ -8,9 +8,9 @@ import { getPropertiesSellingMode } from '../../platform-api/foundations-api'
 import { ListItemModel, MetadataModelPagedResult } from '@reapit/foundations-ts-definitions'
 
 export type AuthenticatedProps = {}
-interface IProperties {
-  pageCount: number;
-}
+// interface IProperties {
+//   pageCount: number;
+// }
 
 export const Authenticated: FC<AuthenticatedProps> = () => {
   const { connectSession } = useReapitConnect(reapitConnectBrowserSession)
@@ -46,7 +46,7 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
   }, [connectSession])
 
   // console.log('Appointment Config Types are: ', appointmentConfigTypes)
-  console.log('properties data ', propertiesData)
+  // console.log('properties data ', propertiesData?.pageCount)
   return (
     <>
       <Title>Properties for Sale</Title>
@@ -74,36 +74,7 @@ console.log({data})
         <TableCell>Third Column</TableCell>
       </TableRow>
     </Table>
-      {/* <Subtitle>Next steps:</Subtitle>
-      <BodyText>You are now authenticated against our sandbox data.</BodyText>
-      <BodyText>
-        Your Reapit connectSession object is available via the useReapitConnect hook and will be automatically refreshed
-        unless you logout. This will provide you with an accessToken and login identity information to authenticate
-        against our plaform APIs. For more on this{' '}
-        <a
-          href="https://developers.reapit.cloud/api-docs//api/web#connect-session"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          visit here.
-        </a>
-      </BodyText>
-      <BodyText>
-        There is a sample fetch service that pulls Appointment Config Types from Foundations API to demonstrate fetching
-        data using this scaffold, logging the data out to the JS console. Naturally you can replace this endpoint in the
-        platform-api file with an API of your choosing from the API explorer in the developer portal. For our API
-        explorer{' '}
-        <a href="https://developers.reapit.cloud/swagger" target="_blank" rel="noreferrer noopener">
-          visit here.
-        </a>
-      </BodyText>
-      <BodyText>
-        Included in the scaffold is the latest version of the Elements UI library. This is the simplest way for you to
-        adhere to the basic style guidelines for Marketplace applications. For more on this{' '}
-        <a href="https://developers.reapit.cloud/api-docs/elements" target="_blank" rel="noreferrer noopener">
-          visit here.
-        </a>
-      </BodyText> */}
+     
     </>
   )
 }
