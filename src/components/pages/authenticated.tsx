@@ -1,5 +1,6 @@
 import React, { useEffect, FC, useState } from 'react'
 import { Title, Subtitle, BodyText } from '@reapit/elements'
+import { Table , TableHeadersRow, TableCell, TableRow, TableHeader} from '@reapit/elements'
 import { useReapitConnect } from '@reapit/connect-session'
 import { reapitConnectBrowserSession } from '../../core/connect-session'
 import { configurationAppointmentsApiService } from '../../platform-api/configuration-api'
@@ -43,8 +44,26 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
   console.log('properties data ', propertiesData)
   return (
     <>
-      <Title>Welcome To Reapit Foundations</Title>
-      <Subtitle>Next steps:</Subtitle>
+      <Title>Properties for Sale</Title>
+
+      <Table>
+      <TableHeadersRow>
+        <TableHeader>First Header</TableHeader>
+        <TableHeader>Second Header</TableHeader>
+        <TableHeader>Third Header</TableHeader>
+      </TableHeadersRow>
+      <TableRow>
+        <TableCell>First Column</TableCell>
+        <TableCell>Second Column</TableCell>
+        <TableCell>Third Column</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>First Column</TableCell>
+        <TableCell>Second Column</TableCell>
+        <TableCell>Third Column</TableCell>
+      </TableRow>
+    </Table>
+      {/* <Subtitle>Next steps:</Subtitle>
       <BodyText>You are now authenticated against our sandbox data.</BodyText>
       <BodyText>
         Your Reapit connectSession object is available via the useReapitConnect hook and will be automatically refreshed
@@ -73,7 +92,7 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
         <a href="https://developers.reapit.cloud/api-docs/elements" target="_blank" rel="noreferrer noopener">
           visit here.
         </a>
-      </BodyText>
+      </BodyText> */}
     </>
   )
 }
