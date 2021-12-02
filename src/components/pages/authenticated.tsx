@@ -5,7 +5,7 @@ import { useReapitConnect } from '@reapit/connect-session'
 import { reapitConnectBrowserSession } from '../../core/connect-session'
 import { configurationAppointmentsApiService } from '../../platform-api/configuration-api'
 import { getPropertiesSellingMode } from '../../platform-api/foundations-api'
-import { ListItemModel, PropertyModel, MetadataModelPagedResult,PropertyModelPagedResult } from '@reapit/foundations-ts-definitions'
+import { ListItemModel, PropertyModel, MetadataModelPagedResult, PropertyModelPagedResult } from '@reapit/foundations-ts-definitions'
 
 export type AuthenticatedProps = {}
 interface IProperties {
@@ -58,7 +58,11 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
       <Table>
         <TableHeadersRow>
           <TableHeader>Id</TableHeader>
-          <TableHeader>Address</TableHeader>
+          <TableHeader>Building Name</TableHeader>
+          <TableHeader>Building Number</TableHeader>
+          <TableHeader>Line</TableHeader>
+          <TableHeader>Post Code</TableHeader>
+          <TableHeader>Country Id</TableHeader>
           <TableHeader>Price</TableHeader>
         </TableHeadersRow>
         {
@@ -66,18 +70,16 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
             console.log({ data })
             return (
               <TableRow>
-              <TableCell>{data?.id}</TableCell>
-              <TableCell>
-                <BodyText>Building Name: {data?.address?.buildingName}</BodyText>
-                <BodyText>Building Number: {data?.address?.buildingNumber}</BodyText>
-                <BodyText>Line: {data?.address?.line1}</BodyText>
-                <BodyText>Post Code: {data?.address?.postcode}</BodyText>
-                <BodyText>Country Id: {data?.address?.countryId}</BodyText>
-                </TableCell>
-              <TableCell>{data?.selling?.price}</TableCell>
-            </TableRow>
+                <TableCell>{data?.id}</TableCell>
+                <TableCell>{data?.address?.buildingName || "-"}</TableCell>
+                <TableCell> {data?.address?.buildingNumber || "-"}</TableCell>
+                <TableCell>{data?.address?.line1 || "-"}</TableCell>
+                <TableCell> {data?.address?.postcode || "-"}</TableCell>
+                <TableCell> {data?.address?.countryId || "-"}</TableCell>
+                <TableCell>{data?.selling?.price || "-"}</TableCell>
+              </TableRow>
             )
-            
+
           })
         }
       </Table>
