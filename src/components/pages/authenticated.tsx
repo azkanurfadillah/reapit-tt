@@ -2,7 +2,7 @@ import React, { useEffect, FC, useState } from 'react'
 import { Title, Subtitle, BodyText } from '@reapit/elements'
 import { useReapitConnect } from '@reapit/connect-session'
 import { reapitConnectBrowserSession } from '../../core/connect-session'
-import { configurationAppointmentsApiService } from '../../platform-api/configuration-api'
+import { configurationAppointmentsApiService,getPropertiesSellingMode } from '../../platform-api/configuration-api'
 import { ListItemModel } from '@reapit/foundations-ts-definitions'
 
 export type AuthenticatedProps = {}
@@ -10,6 +10,7 @@ export type AuthenticatedProps = {}
 export const Authenticated: FC<AuthenticatedProps> = () => {
   const { connectSession } = useReapitConnect(reapitConnectBrowserSession)
   const [appointmentConfigTypes, setAppointmentConfigTypes] = useState<ListItemModel[]>([])
+  const [propertiesData, setPropertiesData] = useState<ListItemModel[]>([])
 
   useEffect(() => {
     const fetchAppoinmentConfigs = async () => {
@@ -24,7 +25,21 @@ export const Authenticated: FC<AuthenticatedProps> = () => {
     }
   }, [connectSession])
 
-  console.log('Appointment Config Types are: ', appointmentConfigTypes)
+ useEffect(() => {
+    const fetchPropertiesData = async () => {
+      if (!connectSession) return
+      const serviceResponse = await getPropertiesSellingMode(connectSession)
+      if (serviceResponse) {
+        setPropertiesData(serviceResponse)
+      }
+    }
+    if (connectSession) {
+      fetchPropertiesData()
+    }
+  }, [connectSession])
+
+  // console.log('Appointment Config Types are: ', appointmentConfigTypes)
+  console.log('properties data ', propertiesData)
   return (
     <>
       <Title>Welcome To Reapit Foundations</Title>

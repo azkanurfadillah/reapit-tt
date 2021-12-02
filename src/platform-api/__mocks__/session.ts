@@ -1,10 +1,10 @@
 import { ReapitConnectSession } from '@reapit/connect-session'
 
 export const mockLoginIdentity = {
-  email: 'name@mail.com',
-  name: 'name',
+  email: 'azkanurfadillah@gmail.com',
+  name: 'azka nurfadillah',
   developerId: 'SOME_DEVELOPER_ID',
-  clientId: 'SOME_CLIENT_ID',
+  clientId: '59h0uc60lpippcdv41c3jggv09',
   adminId: 'SOME_ADMIN_ID',
   userCode: 'SOME_USER_ID',
   orgName: 'SOME_ORG_NAME',
@@ -14,6 +14,7 @@ export const mockLoginIdentity = {
   offGrouping: true,
   offGroupName: 'Cool Office Group',
   officeId: 'MVK',
+  orgProduct:""
 }
 export const mockBrowserSession: ReapitConnectSession = {
   accessToken: JSON.stringify({
