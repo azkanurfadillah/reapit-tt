@@ -2,7 +2,8 @@ import React, { useEffect, FC, useState } from 'react'
 import { Title, Subtitle, BodyText } from '@reapit/elements'
 import { useReapitConnect } from '@reapit/connect-session'
 import { reapitConnectBrowserSession } from '../../core/connect-session'
-import { configurationAppointmentsApiService,getPropertiesSellingMode } from '../../platform-api/configuration-api'
+import { configurationAppointmentsApiService } from '../../platform-api/configuration-api'
+import { getPropertiesSellingMode } from '../../platform-api/foundations-api'
 import { ListItemModel } from '@reapit/foundations-ts-definitions'
 
 export type AuthenticatedProps = {}
